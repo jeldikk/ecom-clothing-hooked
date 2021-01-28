@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
@@ -13,13 +13,65 @@ import CollectionPreview from "../../components/collection-preview/collection-pr
 import CollectionPage from "../collection-page/collection-page.component";
 
 import WithSpinner from "../../components/with-spinner/with-spinner.component";
+
+/* All of this moved to saga so it is not necessary
 import {
   firestore,
   convertCollectionSnapshotToMap,
 } from "../../firebase/firebase.utils";
+*/
 
 const CollectionPreviewWithSpinner = WithSpinner(CollectionPreview);
 const CollectionPageWithSpinner = WithSpinner(CollectionPage);
+
+
+const ShopPage = ({fetchCollectionStart, collections, isCollectionFetching, match}) => {
+
+
+  const keylist = Object.keys(collections)
+
+  useEffect(()=>{
+    console.log("This is Shop useEffect with empty deps")
+    fetchCollectionStart();
+  },[])
+
+  return (
+    <div className="shop-page">
+        <h1>Collections</h1>
+        <Switch>
+          <Route
+            exact
+            path={`${match.path}`}
+            render={() =>
+              keylist.map((key) => (
+                //   <CollectionPreview key={key} {...this.props.collections[key]} />
+                <CollectionPreviewWithSpinner key={key}
+                  isLoading={isCollectionFetching}
+                  {...collections[key]}
+                />
+              ))
+            }
+          />
+
+          <Route
+            exact
+            path={`${match.path}/:collectionName`}
+            render={(props) => (
+              <CollectionPageWithSpinner
+                isLoading={isCollectionFetching}
+                {...props}
+              />
+            )}
+          />
+        </Switch>
+        
+        
+        
+      </div>
+  )
+}
+
+/*
 
 class ShopPage extends React.Component {
   constructor(props) {
@@ -141,6 +193,7 @@ class ShopPage extends React.Component {
   }
 }
 
+*/
 // const mapStateToProps = (state) => {
 //     return {
 //         collection: select

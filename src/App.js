@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import './App.css';
 
 import {Switch, Route, Link, Redirect} from 'react-router-dom'
@@ -18,6 +18,34 @@ import {auth, createUserProfileDocument, addCollectionAndDocuments} from "./fire
 import {setCurrentUser} from "./redux/user/user.actions"
 import {selectCurrentUser} from "./redux/user/user.selectors"
 import {selectCollections} from "./redux/shop/shop.selectors"
+
+// const App = ({currentUser, setCurrentUser}) => {
+
+//   useEffect(() => {
+    
+    
+//     return () => {
+//       cleanup
+//     }
+//   }, [input])
+
+//   return (
+//     <div>
+//       <Header/>
+//       <Switch>
+//         <Route exact path="/" component={HomePage} />
+//         <Route path="/shop" component={ShopPage} />
+//         {/* <Route path="/shop/:collectionName" component={CollectionPage} /> */}
+
+//         <Route exact path="/checkout" component={CheckoutPage} />
+//         {/* <Route path="/signin" component={SignInAndSignOut} /> */}
+//         <Route exact path='/signin' render={() => this.props.currentUser ? (<Redirect to="/" />) : (<SignInAndSignOut />) } />
+        
+//       </Switch>
+      
+//     </div>
+//   );
+// }
 
 export class App extends React.Component{
 

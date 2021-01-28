@@ -8,6 +8,21 @@ import {selectDirectoryData} from "../../redux/directory/directory.selectors"
 
 import {DirectoryMenuContainer} from "./directory.styles"
 
+const Directory = ({menuItems}) => {
+
+    return (
+        <DirectoryMenuContainer>
+            {
+                menuItems.map(({id, ...someOtherParams})=>(
+                    <MenuItem key={id} {...someOtherParams} />
+                ))
+            }
+        </DirectoryMenuContainer>
+    )
+}
+
+
+/*
 class Directory extends React.Component{
     
     constructor(props){
@@ -28,7 +43,7 @@ class Directory extends React.Component{
         )
     }
 }
-
+*/
 // const mapStateToProps = (state) => {
 //     return {
 //         menuItems: state.directory.directory
