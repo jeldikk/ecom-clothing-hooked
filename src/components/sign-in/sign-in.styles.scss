@@ -1,0 +1,18 @@
+.sign-in{
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    
+    .error{
+        color: red;
+    }
+
+    .title{
+        margin: 10px 0;
+    }
+
+    .buttons{
+        display: flex;
+        justify-content: space-between;
+    }
+}
